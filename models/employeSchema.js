@@ -6,12 +6,12 @@ const employeModel = new mongoose.Schema({
     firstName : {
         type : String,
         required : [true , "Frist Name is required"],
-        minLength : [4 , "atleast 4 charachter should have "]
+        minLength : [3 , "atleast 3 charachter should have "]
     },
     lastName :{
         type : String,
         required : [true , "Last Name is required"],
-        minLength : [4 , "atleast 4 charachter should have "]
+        minLength : [3 , "atleast 3 charachter should have "]
     },
     contact :{
         type : String,
@@ -22,7 +22,7 @@ const employeModel = new mongoose.Schema({
     organizationName : {
         type : String,
         required : [true , "Organization Name is required"],
-        minLength : [4 , "Character should have atleast minmum 4 charachter"],
+        minLength : [3 , "Character should have atleast minmum 3 charachter"],
     },
    
     organizationLogo : {
@@ -43,7 +43,7 @@ const employeModel = new mongoose.Schema({
         required : [true , "Password is required"],
         select : false,
         maxLength : [15 , "password should have only 15 charachters"],
-        minLength  : [6 , "atleast minimum 5 charachter should have"]
+        minLength  : [5 , "atleast minimum 5 charachter should have"]
     },
     resetPasswordToken : {
         type : String,

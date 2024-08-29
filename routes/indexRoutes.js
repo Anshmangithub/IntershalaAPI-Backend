@@ -5,7 +5,7 @@ const { homepage , studentsignup ,
      currentuser , 
      studentsendmail , 
      studentforgetlink ,
-
+   
     studentresetpassword,
     studentupdate,
  studentavatar,

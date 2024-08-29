@@ -6,8 +6,8 @@ exports.genratedErrors = ( err ,req ,res, next) => {
     }
 
     res.status(statusCode).json({
-        message : err.message,
-        errName  : err.name,
+        message : err.message ,
+        errName  : err.name ,
         // Stack : err.Stack
     })
 };

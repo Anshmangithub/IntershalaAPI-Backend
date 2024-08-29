@@ -6,12 +6,12 @@ const studentModel = new mongoose.Schema({
     firstName : {
         type : String,
         required : [true , "Frist Name is required"],
-        minLength : [4 , "atleast 4 charachter should have "]
+        minLength : [3 , "atleast 4 charachter should have "]
     },
     lastName :{
         type : String,
         required : [true , "Last Name is required"],
-        minLength : [4 , "atleast 4 charachter should have "]
+        minLength : [3 , "atleast 4 charachter should have "]
     },
     contact :{
         type : String,
@@ -22,7 +22,7 @@ const studentModel = new mongoose.Schema({
     city : {
         type : String,
         required : [true , "City is required"],
-        minLength : [4 , "atleast 4 charachter should have "]
+        minLength : [3 , "atleast 4 charachter should have "]
     },
     avatar : {
         type : Object,
@@ -31,7 +31,7 @@ const studentModel = new mongoose.Schema({
             url : "https://images.unsplash.com/photo-1695504237592-df3322573ee4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
         }
     },
-    gender : {type : String , enum : ["male" , "female" , "others"]}, 
+    gender : {type : String , enum : ["male" , "female" , "others", "Male" ,"Female" , ]}, 
     email : {
         type : String,
         unique : true,
@@ -43,7 +43,7 @@ const studentModel = new mongoose.Schema({
         required : [true , "Password is required"],
         select : false,
         maxLength : [15 , "password should have only 15 charachters"],
-        minLength  : [6 , "atleast minimum 5 charachter should have"]
+        minLength  : [5 , "atleast minimum 5 charachter should have"]
     },
     resetPasswordToken : {
         type : String,

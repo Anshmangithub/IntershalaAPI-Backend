@@ -14,7 +14,7 @@ const logger = require("morgan");
 app.use(logger("tiny"))
 
 // cors 
-app.use(require("cors")({origin : "https://talent-forge-chi.vercel.app/" ,methods: ["POST", "GET"], credentials : true}))
+app.use(require("cors")({origin : true ,  credentials : true}))
 // session and cookies
 
 const session = require("express-session");

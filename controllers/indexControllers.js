@@ -4,9 +4,10 @@ const Internship = require("../models/internshipSchema");
 const Job = require("../models/jobSchema");
 const ErorrHandler = require("../utils/ErorrHandler");
 const { sendmail } = require("../utils/nodemailer");
-const { sendtoken } = require("../utils/sendToken");
+const { sendtoken } = require("../utils/SendToken");
 const imagekit = require("../utils/ImageKit").initImageKit();
-const path  = require("path")
+const path  = require("path");
+const sendToken = require("../utils/SendToken");
 
 exports.homepage =  catchAsyncError(async (req ,res , next)=>{
     res.json({
@@ -95,6 +96,7 @@ exports.studentresetpassword = catchAsyncError(async (req ,res, next) =>{
         await student.save()
     
       sendtoken(student , 201 , res)
+     
 })
 
 
@@ -171,3 +173,4 @@ exports.jobapply = catchAsyncError(async (req ,res , next)=>{
     await job.save()
     res.status(201).json({student , job})
 })
+

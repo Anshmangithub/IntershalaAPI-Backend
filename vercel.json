@@ -1,10 +1,10 @@
 {
-<<<<<<< HEAD
     "version": 2,
     "builds": [
       {
         "src": "app.js",
-        "use": "@vercel/node"
+        "use": "@vercel/node",
+        "config": { "includeFiles": ["routes/**"] }
       }
     ],
     "routes": [
@@ -22,27 +22,3 @@
       }
     ]
   }
-=======
-  "version": 2,
-  "builds": [
-    {
-      "src": "app.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/resume(.*)",
-      "dest": "/app.js"
-    },
-    {
-      "src": "/employe(.*)",
-      "dest": "/app.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/app.js"
-    }
-  ]
-}
->>>>>>> c31c6fac696a9a71459fabfa78e5502e3779d52f

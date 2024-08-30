@@ -22,10 +22,13 @@ const cookieParser = require("cookie-parser");
 
 
 app.use(session({
-    resave : false,
-    saveUninitialized : false,
+    resave : true,
+    saveUninitialized : true,
     secret : process.env.EXPRESS_SESSION_SECRET, 
-    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL })
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL }),
+    collectionName: 'sessions', // Collection name where sessions will be stored
+    ttl: 14 * 24 * 60 * 60, // Session expiration time in seconds (14 days)
+    autoRemove: 'native' // Automatically remove expired sessions
     
 }))
 
@@ -45,13 +48,6 @@ app.use("/resume" , require("./routes/resumeRoutes"))
 app.use("/employe" , require("./routes/employeRoutes"))
 
 
-app.use((req, res, next) => {
-    if (req.url === '/favicon.ico') {
-      res.status(204).end();
-    } else {
-      next();
-    }
-  });
 
 // error handling
 

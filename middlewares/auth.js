@@ -4,7 +4,7 @@ const { catchAsyncError } = require("./catchAsyncError");
 
 exports.isAuthenticated  = catchAsyncError( async(req, res ,next) =>{
     const {token} = req.cookies
-   
+     
      if(!token){
         return next( new ErorrHandler("please login first to access the app resources" , 401))
      }

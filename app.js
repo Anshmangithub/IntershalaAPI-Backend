@@ -1,6 +1,8 @@
 require("dotenv").config({path : "./.env"})
 const express = require("express");
+const MongoStore = require('connect-mongo');
 const app = express();
+
 
 
 
@@ -20,10 +22,10 @@ const cookieParser = require("cookie-parser");
 
 
 app.use(session({
-    resave : true,
-    saveUninitialized : true,
-    secret : process.env.EXPRESS_SESSION_SECRET 
-    
+    resave : false,
+    saveUninitialized : false,
+    secret : process.env.EXPRESS_SESSION_SECRET, 
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL })
     
 }))
 

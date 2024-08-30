@@ -1,8 +1,13 @@
 require("dotenv").config({path : "./.env"})
 const express = require("express");
-
+const session = require("express-session");
+const MongoStore = require("connect-mongo")
 const app = express();
 
+const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
+
+myEmitter.setMaxListeners(20);
 // databse connectivity
 require("./models/database").connectedDatabase();
 
@@ -14,13 +19,16 @@ app.use(logger("tiny"))
 app.use(require("cors")({origin : true , credentials : true}))
 // session and cookies
 
-const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
 app.use(session({
-    resave : true,
+    resave : false,
     saveUninitialized : true,
-    secret : process.env.EXPRESS_SESSION_SECRET
+    secret : process.env.EXPRESS_SESSION_SECRET ,
+    store : MongoStore.create({
+        mongoUrl : process.env.MONGODB_URL
+    })
+    
 }))
 
 app.use(cookieParser())

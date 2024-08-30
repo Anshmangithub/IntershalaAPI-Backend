@@ -4,7 +4,7 @@ const Internship = require("../models/internshipSchema");
 const Job = require("../models/jobSchema");
 const ErorrHandler = require("../utils/ErorrHandler");
 const { sendmail } = require("../utils/nodemailer");
-const { sendtoken } = require("../utils/sendToken");
+const sendtoken = require('../utils/sendToken');
 const imagekit = require("../utils/ImageKit").initImageKit();
 const path  = require("path")
 

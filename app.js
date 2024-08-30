@@ -1,13 +1,9 @@
 require("dotenv").config({path : "./.env"})
 const express = require("express");
-const session = require("express-session");
-const MongoStore = require("connect-mongo")
 const app = express();
 
-const EventEmitter = require('events');
-const myEmitter = new EventEmitter();
 
-myEmitter.setMaxListeners(20);
+
 // databse connectivity
 require("./models/database").connectedDatabase();
 
@@ -16,19 +12,18 @@ const logger = require("morgan");
 app.use(logger("tiny"))
 
 // cors 
-app.use(require("cors")({origin : ["https://talent-forge-chi.vercel.app"], 
-                         methods: ["POST" , "GET"] , credentials : true}))
+app.use(require("cors")({origin : true , credentials : true}))
 // session and cookies
 
+const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
+
 app.use(session({
-    resave : false,
+    resave : true,
     saveUninitialized : true,
-    secret : process.env.EXPRESS_SESSION_SECRET ,
-    store : MongoStore.create({
-        mongoUrl : process.env.MONGODB_URL
-    })
+    secret : process.env.EXPRESS_SESSION_SECRET 
+    
     
 }))
 
@@ -46,6 +41,15 @@ app.use(express.urlencoded({extended : false}));
 app.use("/" , require("./routes/indexRoutes"))
 app.use("/resume" , require("./routes/resumeRoutes"))
 app.use("/employe" , require("./routes/employeRoutes"))
+
+
+app.use((req, res, next) => {
+    if (req.url === '/favicon.ico') {
+      res.status(204).end();
+    } else {
+      next();
+    }
+  });
 
 // error handling
 

@@ -7,7 +7,7 @@ exports.sendtoken = (employe , statusCode , res) =>{
         ),
         httpOnly : true,
 
-        secure : true 
+        // secure : true 
 
     
 

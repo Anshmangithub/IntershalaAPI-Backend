@@ -22,12 +22,12 @@ const cookieParser = require("cookie-parser");
 
 
 app.use(session({
-    resave : true,
+    resave : false,
     saveUninitialized : true,
     secret : process.env.EXPRESS_SESSION_SECRET, 
     store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL }),
     collectionName: 'sessions', // Collection name where sessions will be stored
-    ttl: 14 * 24 * 60 * 60, // Session expiration time in seconds (14 days)
+    cookie: { maxAge: 180 * 60 * 1000 }, // Session expiration time in seconds (14 days)
     autoRemove: 'native' // Automatically remove expired sessions
     
 }))
